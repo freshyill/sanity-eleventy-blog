@@ -20,6 +20,10 @@ async function getPosts () {
     publishedAt,
     title,
     slug,
+    mainImage[]{
+      alt,
+      caption,
+    },
     body[]{
       ...,
       children[]{
