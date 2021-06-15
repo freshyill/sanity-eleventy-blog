@@ -2,10 +2,19 @@
 {% for post in postslist | reverse %}
   {% set currentPost = post.data.post %}
   <li class="postlist-item{% if post.url == url %} postlist-item-active{% endif %}">
+
+
     <a href="{{ post.url | url }}" class="postlist-link">
+
+    <img src="{% croppedUrlFor currentPost.mainImage, 100, 100 %}" alt="{{ currentPost.mainImage.alt }}"><br>
+
+
     {{ currentPost.mainImage.alt }}
     {% if currentPost.title %}{{ currentPost.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</a>
     <time class="postlist-date" datetime="{{ currentPost.publishedAt }}">{{ currentPost.publishedAt|readableDate }}</time>
+    <div style="border: 1px solid #ccc; padding: 5px; margin: 10px;">
+      {{ currentPost.excerpt | markdownify | safe | strip }}
+    </div>
   </li>
 {% endfor %}
 </ol>
